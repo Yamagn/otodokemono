@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        width:auto;
+        height: 100%;
+        background-color: gray;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero is-primary">
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        Noise Level
+      </h1>
+    </div>
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot">
+    <nav class="tabs">
+      <div class="container">
+        <ul>
+          <li class="is-active"><a href="C:\Users\nobuz\OneDrive\デスクトップ\創成コンテスト\GoogleMap.html">Main</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Other</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+  <!-- GoogleMap -->
+    <div id="map"></div>
+    <!-- Googlemap is Ended -->
+
+    <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>This app</strong> by じゃだらりん.
+      </p>
+    </div>
+  <This apper>
+    <script>
+      var myLatLng={lat: 35.087539, lng:137.155929};
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          zoom: 15
+        });
+
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          animation: google.maps.Animation.DROP,
+          title: 'Current Location',
+        });
+
+  // Add the circle for this city to the map.
+        var cityCircle = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          map: map,
+          center: myLatLng,
+          radius: 1000
+        });
+    }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh9n4d50eLkFXLo4rNNJJyHGQVGobmAUs&callback=initMap"
+    async defer></script>
+  </body>
+</html>
