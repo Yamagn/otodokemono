@@ -32,20 +32,13 @@ if __name__ == '__main__':
 def status():
     if request.headers['Content-Type'] != 'application/json':
         return jsonify(res='error'), 400
-    data = json.load(request.data)
-    if data["name"] & data["noise"]:
-        content = Noise(name=data["name"],
-                        noise=data["noise"],
-                        latitude=latitude,
-                        longitude=longitude,
-                        date=datetime.now())
-        db_session.add(content)
-        db_session.commit()
-        return jsonify(req="ok")
-    else:
-        return make_response(jsonify({"error": "Bad request"}), 400)
-
-
-
-
-
+    data = json.loads(request.data.decode('utf-8'))
+    print(data)
+    content = Noise(name=data["name"],
+                    noise=data["noise"],
+                    latitude=latitude,
+                    longitude=longitude,
+                    date=datetime.now())
+    db_session.add(content)
+    db_session.commit()
+    return jsonify(req="ok")
