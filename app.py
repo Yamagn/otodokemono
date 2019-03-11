@@ -6,8 +6,8 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-latitude = 35.103611
-longitude = 137.148183
+latitude = 35.692467
+longitude = 139.7581
 
 
 @app.route('/')
