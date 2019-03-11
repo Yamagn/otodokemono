@@ -4,7 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 import os
 
 # PostgreSQLを指定してテーブルのcreateを指定
-engine = create_engine("postgresql://localhost/postgres", convert_unicode=True)
+db_uri = os.environ.get('DATABASE_URL') or "postgresql://localhost/postgres"
+engine = create_engine(db_uri, convert_unicode=True)
 # bindにテーブルcreateを指定
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
