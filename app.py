@@ -6,11 +6,24 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+latitude = 35.103611
+longitude = 137.148183
+
 
 @app.route('/')
 def index():
-    title = "おとどけもの"
-    return render_template('GoogleMap.html', title=title)
+    row = db_session.query(Noise).order_by(Noise.date.desc()).first()
+    # row = Noise.query.first()
+    noise = row.noise
+    print(noise)
+    color = ""
+    if noise >= 80:
+        color = "#F00"
+    elif 50 < noise < 80:
+        color = "#FF0"
+    else:
+        color = "#0FF"
+    return render_template('GoogleMap.html', latitude=latitude, longitude=longitude, color=color)
 if __name__ == '__main__':
     app.run()
 
@@ -20,11 +33,11 @@ def status():
     if request.headers['Content-Type'] != 'application/json':
         return jsonify(res='error'), 400
     data = json.load(request.data)
-    if data["name"] & data["noise"] & data["latitude"] & data["longitude"]:
+    if data["name"] & data["noise"]:
         content = Noise(name=data["name"],
                         noise=data["noise"],
-                        latitude=data["latitude"],
-                        longitude=data["longitude"],
+                        latitude=latitude,
+                        longitude=longitude,
                         date=datetime.now())
         db_session.add(content)
         db_session.commit()
@@ -32,10 +45,6 @@ def status():
     else:
         return make_response(jsonify({"error": "Bad request"}), 400)
 
-
-@app.errorhandler(404)
-def not_found(error):
-    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 
