@@ -23,7 +23,7 @@ def index():
         color = "#FF0"
     else:
         color = "#0FF"
-    return render_template('GoogleMap.html', latitude=latitude, longitude=longitude, color=color)
+    return render_template('GoogleMap.html', latitude=latitude, longitude=longitude, color=color, noise=noise)
 if __name__ == '__main__':
     app.run()
 
