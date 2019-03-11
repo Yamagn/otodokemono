@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import os
 
 # PostgreSQLを指定してテーブルのcreateを指定
-engine = create_engine("postgresql+psycopg2://test:333@localhost:5432/postgres", convert_unicode=True)
+engine = create_engine("postgresql+psycopg2://test:333@153.126.146.72:5432/postgres", convert_unicode=True)
 # bindにテーブルcreateを指定
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
