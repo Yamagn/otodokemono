@@ -3,10 +3,8 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
 
-# otodokemono.dbという名前のdbファイルを作成
-database_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), "otodokemono.db")
-# SQLiteを指定してテーブルのcreateを指定
-engine = create_engine("sqlite:///" + database_file, convert_unicode=True)
+# PostgreSQLを指定してテーブルのcreateを指定
+engine = create_engine("postgresql+psycopg2://test:333@localhost/postgres", convert_unicode=True)
 # bindにテーブルcreateを指定
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
