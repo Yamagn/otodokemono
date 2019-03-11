@@ -1,1 +1,1 @@
-web: gunicorn otodokemono:app --log-file=-
+web: gunicorn app --log-file=-
