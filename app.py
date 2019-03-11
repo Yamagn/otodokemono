@@ -28,7 +28,7 @@ if __name__ == '__main__':
     app.run()
 
 
-@app.route('/api/status', methods=['POST'])
+@app.route('/api/status/', methods=['POST'])
 def status():
     if request.headers['Content-Type'] != 'application/json':
         return jsonify(res='error'), 400
@@ -41,4 +41,4 @@ def status():
                     date=datetime.now())
     db_session.add(content)
     db_session.commit()
-    return jsonify(req="ok")
+    return jsonify(res="ok")
